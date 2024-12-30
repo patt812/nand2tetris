@@ -1,0 +1,44 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Or8Way.hdl
+/**
+ * 8-way Or gate: 
+ * out = in[0] Or in[1] Or ... Or in[7]
+ */
+CHIP Or8Way {
+    IN in[8];
+    OUT out;
+
+    PARTS:
+    // apply or adjacently
+    Nand(a=in[0], b=in[0], out=not0);
+    Nand(a=in[1], b=in[1], out=not1);
+    Nand(a=not0, b=not1, out=or1);
+
+    Nand(a=in[2], b=in[2], out=not2);
+    Nand(a=in[3], b=in[3], out=not3);
+    Nand(a=not2, b=not3, out=or2);
+
+    Nand(a=in[4], b=in[4], out=not4);
+    Nand(a=in[5], b=in[5], out=not5);
+    Nand(a=not4, b=not5, out=or3);
+
+    Nand(a=in[6], b=in[6], out=not6);
+    Nand(a=in[7], b=in[7], out=not7);
+    Nand(a=not6, b=not7, out=or4);
+
+    // Step2: OR(or1, or2), OR(or3, or4)
+    Nand(a=or1, b=or1, out=nor1);
+    Nand(a=or2, b=or2, out=nor2);
+    Nand(a=nor1, b=nor2, out=or12);
+
+    Nand(a=or3, b=or3, out=nor3);
+    Nand(a=or4, b=or4, out=nor4);
+    Nand(a=nor3, b=nor4, out=or34);
+
+    // OR Step2
+    Nand(a=or12, b=or12, out=nor12);
+    Nand(a=or34, b=or34, out=nor34);
+    Nand(a=nor12, b=nor34, out=out);
+}
