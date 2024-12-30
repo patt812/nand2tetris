@@ -1,0 +1,174 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux16.hdl
+/**
+ * 16-bit multiplexor: 
+ * for i = 0, ..., 15:
+ * if (sel = 0) out[i] = a[i], else out[i] = b[i]
+ */
+CHIP Mux16 {
+    IN a[16], b[16], sel;
+    OUT out[16];
+
+    PARTS:
+    // Bit 0
+    Nand(a=sel, b=sel, out=nsel0);
+    Nand(a=nsel0, b=a[0], out=a10);
+    Nand(a=a10, b=a10, out=part10);
+    Nand(a=sel, b=b[0], out=part2tmp0);
+    Nand(a=part2tmp0, b=part2tmp0, out=part20);
+    Nand(a=part10, b=part10, out=npart10);
+    Nand(a=part20, b=part20, out=npart20);
+    Nand(a=npart10, b=npart20, out=out[0]);
+
+    // Bit 1
+    Nand(a=sel, b=sel, out=nsel1);
+    Nand(a=nsel1, b=a[1], out=a11);
+    Nand(a=a11, b=a11, out=part11);
+    Nand(a=sel, b=b[1], out=part2tmp1);
+    Nand(a=part2tmp1, b=part2tmp1, out=part21);
+    Nand(a=part11, b=part11, out=npart11);
+    Nand(a=part21, b=part21, out=npart21);
+    Nand(a=npart11, b=npart21, out=out[1]);
+
+    // Bit 2
+    Nand(a=sel, b=sel, out=nsel2);
+    Nand(a=nsel2, b=a[2], out=a12);
+    Nand(a=a12, b=a12, out=part12);
+    Nand(a=sel, b=b[2], out=part2tmp2);
+    Nand(a=part2tmp2, b=part2tmp2, out=part22);
+    Nand(a=part12, b=part12, out=npart12);
+    Nand(a=part22, b=part22, out=npart22);
+    Nand(a=npart12, b=npart22, out=out[2]);
+
+    // Bit 3
+    Nand(a=sel, b=sel, out=nsel3);
+    Nand(a=nsel3, b=a[3], out=a13);
+    Nand(a=a13, b=a13, out=part13);
+    Nand(a=sel, b=b[3], out=part2tmp3);
+    Nand(a=part2tmp3, b=part2tmp3, out=part23);
+    Nand(a=part13, b=part13, out=npart13);
+    Nand(a=part23, b=part23, out=npart23);
+    Nand(a=npart13, b=npart23, out=out[3]);
+
+    // Bit 4
+    Nand(a=sel, b=sel, out=nsel4);
+    Nand(a=nsel4, b=a[4], out=a14);
+    Nand(a=a14, b=a14, out=part14);
+    Nand(a=sel, b=b[4], out=part2tmp4);
+    Nand(a=part2tmp4, b=part2tmp4, out=part24);
+    Nand(a=part14, b=part14, out=npart14);
+    Nand(a=part24, b=part24, out=npart24);
+    Nand(a=npart14, b=npart24, out=out[4]);
+
+    // Bit 5
+    Nand(a=sel, b=sel, out=nsel5);
+    Nand(a=nsel5, b=a[5], out=a15);
+    Nand(a=a15, b=a15, out=part15);
+    Nand(a=sel, b=b[5], out=part2tmp5);
+    Nand(a=part2tmp5, b=part2tmp5, out=part25);
+    Nand(a=part15, b=part15, out=npart15);
+    Nand(a=part25, b=part25, out=npart25);
+    Nand(a=npart15, b=npart25, out=out[5]);
+
+    // Bit 6
+    Nand(a=sel, b=sel, out=nsel6);
+    Nand(a=nsel6, b=a[6], out=a16);
+    Nand(a=a16, b=a16, out=part16);
+    Nand(a=sel, b=b[6], out=part2tmp6);
+    Nand(a=part2tmp6, b=part2tmp6, out=part26);
+    Nand(a=part16, b=part16, out=npart16);
+    Nand(a=part26, b=part26, out=npart26);
+    Nand(a=npart16, b=npart26, out=out[6]);
+
+    // Bit 7
+    Nand(a=sel, b=sel, out=nsel7);
+    Nand(a=nsel7, b=a[7], out=a17);
+    Nand(a=a17, b=a17, out=part17);
+    Nand(a=sel, b=b[7], out=part2tmp7);
+    Nand(a=part2tmp7, b=part2tmp7, out=part27);
+    Nand(a=part17, b=part17, out=npart17);
+    Nand(a=part27, b=part27, out=npart27);
+    Nand(a=npart17, b=npart27, out=out[7]);
+
+    // Bit 8
+    Nand(a=sel, b=sel, out=nsel8);
+    Nand(a=nsel8, b=a[8], out=a18);
+    Nand(a=a18, b=a18, out=part18);
+    Nand(a=sel, b=b[8], out=part2tmp8);
+    Nand(a=part2tmp8, b=part2tmp8, out=part28);
+    Nand(a=part18, b=part18, out=npart18);
+    Nand(a=part28, b=part28, out=npart28);
+    Nand(a=npart18, b=npart28, out=out[8]);
+
+    // Bit 9
+    Nand(a=sel, b=sel, out=nsel9);
+    Nand(a=nsel9, b=a[9], out=a19);
+    Nand(a=a19, b=a19, out=part19);
+    Nand(a=sel, b=b[9], out=part2tmp9);
+    Nand(a=part2tmp9, b=part2tmp9, out=part29);
+    Nand(a=part19, b=part19, out=npart19);
+    Nand(a=part29, b=part29, out=npart29);
+    Nand(a=npart19, b=npart29, out=out[9]);
+
+    // Bit 10
+    Nand(a=sel, b=sel, out=nsel10);
+    Nand(a=nsel10, b=a[10], out=a110);
+    Nand(a=a110, b=a110, out=part110);
+    Nand(a=sel, b=b[10], out=part2tmp10);
+    Nand(a=part2tmp10, b=part2tmp10, out=part210);
+    Nand(a=part110, b=part110, out=npart110);
+    Nand(a=part210, b=part210, out=npart210);
+    Nand(a=npart110, b=npart210, out=out[10]);
+
+    // Bit 11
+    Nand(a=sel, b=sel, out=nsel11);
+    Nand(a=nsel11, b=a[11], out=a111);
+    Nand(a=a111, b=a111, out=part111);
+    Nand(a=sel, b=b[11], out=part2tmp11);
+    Nand(a=part2tmp11, b=part2tmp11, out=part211);
+    Nand(a=part111, b=part111, out=npart111);
+    Nand(a=part211, b=part211, out=npart211);
+    Nand(a=npart111, b=npart211, out=out[11]);
+
+    // Bit 12
+    Nand(a=sel, b=sel, out=nsel12);
+    Nand(a=nsel12, b=a[12], out=a112);
+    Nand(a=a112, b=a112, out=part112);
+    Nand(a=sel, b=b[12], out=part2tmp12);
+    Nand(a=part2tmp12, b=part2tmp12, out=part212);
+    Nand(a=part112, b=part112, out=npart112);
+    Nand(a=part212, b=part212, out=npart212);
+    Nand(a=npart112, b=npart212, out=out[12]);
+
+    // Bit 13
+    Nand(a=sel, b=sel, out=nsel13);
+    Nand(a=nsel13, b=a[13], out=a113);
+    Nand(a=a113, b=a113, out=part113);
+    Nand(a=sel, b=b[13], out=part2tmp13);
+    Nand(a=part2tmp13, b=part2tmp13, out=part213);
+    Nand(a=part113, b=part113, out=npart113);
+    Nand(a=part213, b=part213, out=npart213);
+    Nand(a=npart113, b=npart213, out=out[13]);
+
+    // Bit 14
+    Nand(a=sel, b=sel, out=nsel14);
+    Nand(a=nsel14, b=a[14], out=a114);
+    Nand(a=a114, b=a114, out=part114);
+    Nand(a=sel, b=b[14], out=part2tmp14);
+    Nand(a=part2tmp14, b=part2tmp14, out=part214);
+    Nand(a=part114, b=part114, out=npart114);
+    Nand(a=part214, b=part214, out=npart214);
+    Nand(a=npart114, b=npart214, out=out[14]);
+
+    // Bit 15
+    Nand(a=sel, b=sel, out=nsel15);
+    Nand(a=nsel15, b=a[15], out=a115);
+    Nand(a=a115, b=a115, out=part115);
+    Nand(a=sel, b=b[15], out=part2tmp15);
+    Nand(a=part2tmp15, b=part2tmp15, out=part215);
+    Nand(a=part115, b=part115, out=npart115);
+    Nand(a=part215, b=part215, out=npart215);
+    Nand(a=npart115, b=npart215, out=out[15]);
+}
